@@ -1,0 +1,17 @@
+﻿@model IEnumerable<CinemaParadiso.Models.Movie>
+@{
+    ViewBag.Title = "Home";
+}
+
+@foreach (var movie in Model)
+{
+    <div>
+        <h4>
+            @movie.Name
+        </h4>
+        <div>
+            @movie.Year
+        </div>
+        <hr />
+    </div> 
+}
