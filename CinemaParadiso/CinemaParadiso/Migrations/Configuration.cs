@@ -29,14 +29,14 @@ namespace CinemaParadiso.Migrations
             //
             context.Movies.AddOrUpdate(
                 p => p.Name,
-                new Movie { Name = "The Fountain", Year = 2004 },
-                new Movie { Name = "The Illusionist", Year = 2006 },
-                new Movie { Name = "Eternal Sunshine of the Spotless Mind", Year = 2004 },
-                new Movie { Name = "Troy", Year = 2004 },
-                new Movie { Name = "The Great gatsby", Year = 2012 },
-                new Movie { Name = "Nine 1/2 Weeks", Year = 1986 },
-                new Movie { Name = "Reds", Year = 1981 }
-                );
+                new Movie
+                {
+                    Name = "The Great Gatsby",
+                    Year = 2012,
+                    Creator = "admin",
+                    CoverUrl = @"http://ia.media-imdb.com/images/M/MV5BMTkxNTk1ODcxNl5BMl5BanBnXkFtZTcwMDI1OTMzOQ@@._V1_SX640_SY720_.jpg"
+                }
+               );
         }
     }
 }
