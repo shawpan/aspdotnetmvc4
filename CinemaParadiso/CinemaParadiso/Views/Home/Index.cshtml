@@ -1,11 +1,11 @@
-﻿@model IEnumerable<CinemaParadiso.Models.Movie>
+﻿@model IPagedList<Movie>
 @{
     ViewBag.Title = "Home";
 }
 <form method="get" action="@Url.Action("Index")"
       data-cp-ajax="true" data-cp-target="#moviesList">
 
-    <input type="search" name="searchText" value="@Html.Encode(ViewBag.SearchText)" data-cp-autocomplete="@Url.Action("AutoComplete")" />
+    <input type="search" name="searchText" data-cp-autocomplete="@Url.Action("AutoComplete")" />
     <input type="submit" value="Search" />
 </form>
 

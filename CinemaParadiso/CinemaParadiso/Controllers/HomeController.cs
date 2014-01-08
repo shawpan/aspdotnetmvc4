@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using PagedList;
 namespace CinemaParadiso.Controllers
 {
     public class HomeController : Controller
@@ -23,11 +23,12 @@ namespace CinemaParadiso.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Index(string searchText = null)
+        public ActionResult Index(string searchText = null, int page =1)
         {
             var movies = _db.Movies
                 .OrderByDescending(movie => movie.Year)
-                .Where(movie => searchText == null || movie.Name.Contains(searchText));
+                .Where(movie => searchText == null || movie.Name.Contains(searchText))
+                .ToPagedList(page,2);
 
             ViewBag.SearchText = searchText;
 

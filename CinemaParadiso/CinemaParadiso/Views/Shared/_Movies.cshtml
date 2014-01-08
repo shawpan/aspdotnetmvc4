@@ -1,6 +1,9 @@
-﻿@model IEnumerable<CinemaParadiso.Models.Movie>
+﻿@model IPagedList<Movie>
 
 <div id="moviesList">
+    <div class="pagedList" data-cp-target="#moviesList">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),PagedListRenderOptions.MinimalWithItemCountText)
+    </div>
     @foreach (var movie in Model)
     {
         <div>
