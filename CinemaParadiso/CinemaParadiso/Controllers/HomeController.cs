@@ -10,10 +10,33 @@ namespace CinemaParadiso.Controllers
     public class HomeController : Controller
     {
         CinemaParadisoDb _db = new CinemaParadisoDb();
-        public ActionResult Index()
+
+        public ActionResult AutoComplete(string term)
         {
-            var model = _db.Movies.ToList();
-            return View(model);
+            var model = _db.Movies
+                .Where(movie => movie.Name.Contains(term))
+                .Take(10)
+                .Select(r => new { 
+                    label = r.Name
+                });
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Index(string searchText = null)
+        {
+            var movies = _db.Movies
+                .OrderByDescending(movie => movie.Year)
+                .Where(movie => searchText == null || movie.Name.Contains(searchText));
+
+            ViewBag.SearchText = searchText;
+
+            if(Request.IsAjaxRequest())
+            {
+                return PartialView("_Movies",movies);
+            }
+
+            return View(movies);
         }
 
         public ActionResult About()

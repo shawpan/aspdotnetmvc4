@@ -2,16 +2,23 @@
 @{
     ViewBag.Title = "Home";
 }
+<form method="get" action="@Url.Action("Index")"
+      data-cp-ajax="true" data-cp-target="#moviesList">
 
-@foreach (var movie in Model)
+    <input type="search" name="searchText" value="@Html.Encode(ViewBag.SearchText)" data-cp-autocomplete="@Url.Action("AutoComplete")" />
+    <input type="submit" value="Search" />
+</form>
+
+@*@using (Ajax.BeginForm(
+    new AjaxOptions 
+    {
+     HttpMethod = "get",
+     InsertionMode = InsertionMode.Replace,
+     UpdateTargetId = "moviesList"   
+    }))
 {
-    <div>
-        <h4>
-            @movie.Name
-        </h4>
-        <div>
-            @movie.Year
-        </div>
-        <hr />
-    </div> 
-}
+    <input type="search" name="searchText" value="@Html.Encode(ViewBag.SearchText)" />
+    <input type="submit" value="Search" />
+}*@
+
+@Html.Partial("_Movies", Model)
