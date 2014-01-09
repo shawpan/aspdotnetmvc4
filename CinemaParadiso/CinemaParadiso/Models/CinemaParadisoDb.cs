@@ -21,7 +21,8 @@ namespace CinemaParadiso.Models
 
         public static void InitializeDatabaseConnection()
         {
-            WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+            if (!WebSecurity.Initialized)
+                WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
         }
     }
 }
