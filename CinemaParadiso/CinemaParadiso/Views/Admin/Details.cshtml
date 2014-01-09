@@ -4,11 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Model.Name</h2>
 
 <fieldset>
     <legend>Movie</legend>
-
+    <div>
+        <img src="@Model.CoverUrl" />
+    </div>
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Name)
     </div>
@@ -28,6 +30,20 @@
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.CoverUrl)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Creator)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Creator)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Approved)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Approved)
     </div>
 </fieldset>
 <p>

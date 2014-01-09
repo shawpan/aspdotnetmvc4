@@ -24,6 +24,10 @@ namespace CinemaParadiso.Controllers
             {
                 return HttpNotFound();
             }
+            if(!User.IsInRole("admin") && movie.Approved == false)
+            {
+                return new HttpNotFoundResult("This entry is waiting for approval from administrators.");
+            }
             return View(movie);
         }
 
@@ -65,9 +69,13 @@ namespace CinemaParadiso.Controllers
             {
                 return HttpNotFound();
             }
-            if (!User.Identity.Name.Equals("admin") && !User.Identity.Name.Equals(movie.Creator))
+            if (!User.IsInRole("admin") && !User.Identity.Name.Equals(movie.Creator))
             {
                 return HttpNotFound();
+            }
+            if (!User.IsInRole("admin") && movie.Approved == false)
+            {
+                return new HttpNotFoundResult("This entry is waiting for approval from administrators.");
             }
             return View(movie);
         }
@@ -80,9 +88,13 @@ namespace CinemaParadiso.Controllers
         [Authorize]
         public ActionResult Edit(Movie movie)
         {
-            if (!User.Identity.Name.Equals("admin") && !User.Identity.Name.Equals(movie.Creator))
+            if (!User.IsInRole("admin") && !User.Identity.Name.Equals(movie.Creator))
             {
                 return HttpNotFound();
+            }
+            if (!User.IsInRole("admin") && movie.Approved == false)
+            {
+                return new HttpNotFoundResult("This entry is waiting for approval from administrators.");
             }
             if (ModelState.IsValid)
             {
@@ -103,9 +115,13 @@ namespace CinemaParadiso.Controllers
             {
                 return HttpNotFound();
             }
-            if (!User.Identity.Name.Equals("admin") && !User.Identity.Name.Equals(movie.Creator))
+            if (!User.IsInRole("admin") && !User.Identity.Name.Equals(movie.Creator))
             {
                 return HttpNotFound();
+            }
+            if (!User.IsInRole("admin") && movie.Approved == false)
+            {
+                return new HttpNotFoundResult("This entry is waiting for approval from administrators.");
             }
             return View(movie);
         }
@@ -118,9 +134,13 @@ namespace CinemaParadiso.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Movie movie = db.Movies.Find(id);
-            if (!User.Identity.Name.Equals("admin") && !User.Identity.Name.Equals(movie.Creator))
+            if (!User.IsInRole("admin") && !User.Identity.Name.Equals(movie.Creator))
             {
                 return HttpNotFound();
+            }
+            if (!User.IsInRole("admin") && movie.Approved == false)
+            {
+                return new HttpNotFoundResult("This entry is waiting for approval from administrators.");
             }
             db.Movies.Remove(movie);
             db.SaveChanges();

@@ -27,8 +27,8 @@ namespace CinemaParadiso.Controllers
         {
             var movies = _db.Movies
                 .OrderByDescending(movie => movie.Year)
-                .Where(movie => searchText == null || movie.Name.Contains(searchText))
-                .ToPagedList(page,2);
+                .Where(movie => movie.Approved == true && ( searchText == null || movie.Name.Contains(searchText)))
+                .ToPagedList(page,10);
 
             ViewBag.SearchText = searchText;
 

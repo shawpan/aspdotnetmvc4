@@ -39,6 +39,22 @@
             @Html.ValidationMessageFor(model => model.CoverUrl)
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Creator)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Creator)
+            @Html.ValidationMessageFor(model => model.Creator)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Approved)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Approved)
+            @Html.ValidationMessageFor(model => model.Approved)
+        </div>
+
         <p>
             <input type="submit" value="Save" />
         </p>

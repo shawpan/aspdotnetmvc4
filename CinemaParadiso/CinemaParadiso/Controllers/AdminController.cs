@@ -9,6 +9,7 @@ using CinemaParadiso.Models;
 
 namespace CinemaParadiso.Controllers
 {
+    [Authorize(Roles="admin")]
     public class AdminController : Controller
     {
         private CinemaParadisoDb db = new CinemaParadisoDb();

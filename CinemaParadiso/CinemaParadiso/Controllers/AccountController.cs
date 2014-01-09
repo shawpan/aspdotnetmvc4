@@ -8,13 +8,11 @@ using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using CinemaParadiso.Filters;
 using CinemaParadiso.Models;
 
 namespace CinemaParadiso.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
@@ -37,6 +35,11 @@ namespace CinemaParadiso.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
+                var roles = (SimpleRoleProvider)Roles.Provider;
+                if(roles.GetRolesForUser(model.UserName).Length == 0)
+                {
+                    roles.AddUsersToRoles(new string[] {model.UserName}, new string[] {"user"});
+                }
                 return RedirectToLocal(returnUrl);
             }
 
@@ -263,7 +266,7 @@ namespace CinemaParadiso.Controllers
             if (ModelState.IsValid)
             {
                 // Insert a new user into the database
-                using (UsersContext db = new UsersContext())
+                using (CinemaParadisoDb db = new CinemaParadisoDb())
                 {
                     UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
                     // Check if user already exists

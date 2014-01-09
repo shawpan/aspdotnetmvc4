@@ -30,6 +30,20 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.CoverUrl)
     </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Creator)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Creator)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Approved)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Approved)
+    </div>
 </fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()

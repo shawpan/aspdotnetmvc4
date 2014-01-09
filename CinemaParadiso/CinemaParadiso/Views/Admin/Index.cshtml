@@ -18,7 +18,10 @@
             @Html.DisplayNameFor(model => model.Year)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CoverUrl)
+            @Html.DisplayNameFor(model => model.Creator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Approved)
         </th>
         <th></th>
     </tr>
@@ -32,7 +35,10 @@
             @Html.DisplayFor(modelItem => item.Year)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CoverUrl)
+            @Html.DisplayFor(modelItem => item.Creator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Approved)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
